@@ -1,0 +1,32 @@
+<ngb-alert *ngIf="alertMessage" [type]="alertType" (closed)="alertMessage = ''">
+    {{ alertMessage }}
+</ngb-alert>
+<div class="content_wrapper edit" style="padding: 16px;">
+    <div class="table_wrapper">
+        <h3>
+            {{pageTitle}}
+        </h3>
+        <form (ngSubmit)="onSubmit()" #postForm="ngForm">
+            <div class="form-group">
+                <label for="title">Título</label>
+                <input type="text" class="form-control" id="title" [(ngModel)]="post.title" name="title" required #title="ngModel">
+                <div [hidden]="title.valid || title.pristine" class="alert alert-danger">
+                    Título Obligatorio
+                </div>
+
+                <label for="body">Texto</label>
+                <textarea id="body" class="form-control" cols="30" rows="10" [(ngModel)]="post.body" name="body" required #body="ngModel"></textarea>
+                <div [hidden]="body.valid || body.pristine" class="alert alert-danger">
+                    Texto Obligatorio
+                </div>
+
+                <label for="user">Usuario</label>
+                <select class="form-control" id="user" (change)="selectedUserChange($event)" required>
+                    <option *ngFor="let user of users" [value]="user.id" [selected]="user.id == post.userId">{{user.username}}</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success mb-2" [disabled]="!postForm.form.valid"><fa-icon [icon]="['fas', 'save']"></fa-icon> Guardar datos</button>
+        </form>
+
+    </div>
+</div>

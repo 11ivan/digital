@@ -1,0 +1,18 @@
+nav {
+    background-color: #CAF0F4 !important;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+
+/* li:hover {
+    background-color: #7C83AF;
+} */
+
+a {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+a:hover {
+    color: #7C83AF !important;
+}

@@ -1,0 +1,50 @@
+<ngb-alert *ngIf="alertMessage" [type]="alertType" (closed)="alertMessage = ''">
+    {{ alertMessage }}
+</ngb-alert>
+<div class="content_wrapper edit" style="padding: 16px;">
+    <div class="table_wrapper">
+        <h3>
+            Detalle del Post
+        </h3>
+        <div style="display: flex; flex-direction: column;">
+
+            <div class="card_info">
+                <label>Título</label>
+                <div>{{postDetailViewModel.title}}</div>
+            </div>
+
+
+            <div class="card_info">
+                <label>Texto</label>
+                <div>{{postDetailViewModel.body}}</div>
+            </div>
+
+
+            <div class="card_info">
+                <label>Usuario</label>
+                <div>{{postDetailViewModel.username}}</div>
+            </div>
+
+            <div *ngIf="postComments && postComments.length > 0" class="card_info">
+                <label>Comentarios</label>
+                <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+                    <ngb-panel *ngFor="let postComment of postComments">
+                        <ng-template ngbPanelHeader>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <button ngbPanelToggle class="btn btn-link p-0">{{postComment.name}}</button>
+                                <div>{{postComment.email}}</div>
+                            </div>
+                        </ng-template>
+                        <ng-template ngbPanelContent>
+                            {{postComment.body}}
+                        </ng-template>
+                    </ngb-panel>
+                </ngb-accordion>
+
+            </div>
+
+        </div>
+
+
+    </div>
+</div>

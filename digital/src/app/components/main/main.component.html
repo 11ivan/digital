@@ -1,0 +1,88 @@
+<ngb-alert *ngIf="alertMessage" type="danger" (closed)="alertMessage = ''">
+    {{ alertMessage }}
+</ngb-alert>
+<div class="content_wrapper" style="padding: 16px;">
+    <div class="filter_wrapper">
+        <div>
+            <div>
+                <label style="font-weight: 450;">
+                    Filtro Usuario
+                </label>
+                <input type="text" class="form-control" placeholder="Nombre de Usuario..." [(ngModel)]="userNameFilter">
+            </div>
+            <div>
+                <button type="button" class="btn btn-success" (click)="newPost()">Nuevo Post</button>
+            </div>
+        </div>
+    </div>
+    <div class="table_wrapper">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Título</th>
+                        <th scope="col">Usuario</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="list" *ngFor="let postWithUser of postsWithUsers | userFilter:userNameFilter">
+                        <td>{{postWithUser.post.title}}</td>
+                        <td class="username" (click)="showUserDetailModal(postWithUser.user)">{{postWithUser.user.username}}</td>
+                        <td style="text-align: center;">
+                            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="editPost(postWithUser.post)">
+                                <fa-icon [icon]="['fas', 'edit']"></fa-icon>
+                            </button>
+                            <button type="button" class="btn btn-primary" (click)="showPostDetail(postWithUser)">
+                                <fa-icon [icon]="['fas', 'eye']"></fa-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <ng-template #modal let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Detalle del Usuario</h4>
+            <button type="button" class="close " aria-label="Close" (click)="modal.dismiss() ">
+				<span aria-hidden="true ">&times;</span>
+			</button>
+        </div>
+        <div class="modal-body">
+            <div class="card_info">
+                <label>Nombre</label>
+                <div>{{selectedUser.name}}</div>
+            </div>
+            <div class="card_info">
+                <label>Nombre de usuario</label>
+                <div>{{selectedUser.username}}</div>
+            </div>
+            <div class="card_info">
+                <label>Email</label>
+                <div>{{selectedUser.email}}</div>
+            </div>
+            <div class="card_info">
+                <label>Dirección</label>
+                <div>{{selectedUser.address.city}}, {{selectedUser.address.street}}</div>
+            </div>
+            <div class="card_info">
+                <label>Teléfono</label>
+                <div>{{selectedUser.phone}}</div>
+            </div>
+            <div class="card_info">
+                <label>Sitio Web</label>
+                <div>{{selectedUser.website}}</div>
+            </div>
+            <div class="card_info">
+                <label>Compañía</label>
+                <div>{{selectedUser.company.name}}, {{selectedUser.company.catchPhrase}}</div>
+            </div>
+        </div>
+        <div class="modal-footer ">
+            <button type="button " class="btn btn-outline-dark " (click)="modal.close() ">Cerrar</button>
+        </div>
+    </ng-template>
+
+</div>

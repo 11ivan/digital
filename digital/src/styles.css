@@ -1,0 +1,41 @@
+* {
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.content_wrapper {
+    width: 100%;
+    height: calc(100vh - 162px);
+    padding: 16px;
+    background-color: #E2F9FB;
+}
+
+.content_wrapper.edit {
+    width: 100%;
+    height: calc(100vh - 62px);
+    padding: 16px;
+    background-color: #E2F9FB;
+}
+
+.modal-header {
+    background-color: #E2F9FB;
+}
+
+.modal-header .close {
+    border: none;
+}
+
+.modal-footer {
+    height: 70px;
+    flex-wrap: nowrap;
+    padding: 0;
+}
